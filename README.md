@@ -1,0 +1,2 @@
+# StockCircle
+My personal project
