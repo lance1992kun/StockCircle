@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background">
+    <!--可滑动的内容层-->
+    <com.hyf.stockcircle.widgets.MyScrollView
+        android:id="@+id/mHeadLineScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--轮播图-->
+            <net.cpacm.library.SimpleSliderLayout
+                android:id="@+id/mBanner"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="#ffffff"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <!--轮播指示器-->
+                <net.cpacm.library.indicator.ViewpagerIndicator.UnderlinePageIndicator
+                    android:id="@+id/mBannerPointer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="4dp"
+                    android:layout_alignParentBottom="true"
+                    app:selectedColor="@color/main_text_selected" />
+
+            </net.cpacm.library.SimpleSliderLayout>
+            <!--头条层-->
+            <include
+                android:id="@+id/mHeadLineLay"
+                layout="@layout/layout_head_line"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/mBanner" />
+            <!--直播层-->
+            <include
+                android:id="@+id/mLiveLay"
+                layout="@layout/layout_live"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/mBanner"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </com.hyf.stockcircle.widgets.MyScrollView>
+    <!--底部展开菜单-->
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/mHomeMenuBtnLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        fab:menu_backgroundColor="@color/half_transparent"
+        fab:menu_colorNormal="@color/main_text_selected">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/mHomeLiveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_home_live_btn"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/mHomeVideoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_home_video_btn"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/mHomePhoneBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_home_phone_btn"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/mHomeTextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_home_text_btn"
+            fab:fab_size="mini" />
+    </com.github.clans.fab.FloatingActionMenu>
+    <!--顶部导航栏-->
+    <RelativeLayout
+        android:id="@+id/mTopNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="top|start"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal">
+        <!--搜索按钮-->
+        <ImageView
+            android:id="@+id/mSearchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@mipmap/icon_home_find"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp" />
+        <!--顶部导航栏分组-->
+        <RadioGroup
+            android:id="@+id/mHomeNavigationGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/mSearchBtn"
+            android:orientation="horizontal">
+            <!--头条-->
+            <RadioButton
+                android:id="@+id/mHomeNewsRb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:drawableBottom="@drawable/selector_home_rb"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:text="@string/home_news"
+                android:textColor="@color/selector_main_text" />
+            <!--直播-->
+            <RadioButton
+                android:id="@+id/mHomeLiveRb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableBottom="@drawable/selector_home_rb"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:text="@string/home_live"
+                android:textColor="@color/selector_main_text" />
+            <!--热门-->
+            <RadioButton
+                android:id="@+id/mHomeHotRb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableBottom="@drawable/selector_home_rb"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:text="@string/home_hot"
+                android:textColor="@color/selector_main_text" />
+            <!--股趣儿-->
+            <RadioButton
+                android:id="@+id/mHomeFunnyRb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableBottom="@drawable/selector_home_rb"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="14dp"
+                android:text="@string/home_funny"
+                android:textColor="@color/selector_main_text" />
+        </RadioGroup>
+    </RelativeLayout>
+
+</RelativeLayout>

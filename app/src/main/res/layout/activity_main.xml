@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--各种界面的适配器-->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_color_divider" />
+    <!--4个模块布局-->
+    <RadioGroup
+        android:id="@+id/mNavigationGroup"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="@color/main_navigation_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+        <!--首页-->
+        <RadioButton
+            android:id="@+id/mHomeRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/selector_main_home"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:text="@string/main_home"
+            android:textColor="@color/selector_main_text" />
+        <!--消息-->
+        <RadioButton
+            android:id="@+id/mMessageRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/selector_main_message"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:text="@string/main_message"
+            android:textColor="@color/selector_main_text" />
+        <!--股友圈-->
+        <RadioButton
+            android:id="@+id/mStockRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/selector_main_stock"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:text="@string/main_stock_circle"
+            android:textColor="@color/selector_main_text" />
+        <!--我的-->
+        <RadioButton
+            android:id="@+id/mProfileRb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/selector_main_profile"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:text="@string/main_profile"
+            android:textColor="@color/selector_main_text" />
+    </RadioGroup>
+</LinearLayout>

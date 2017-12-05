@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--今日资讯层-->
+    <RelativeLayout
+        android:id="@+id/mTodayNewsLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <!--今日资讯图片-->
+        <ImageView
+            android:id="@+id/mTodayNewsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_home_today_news"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp" />
+        <!--分割线-->
+        <View
+            android:id="@+id/mTodayNewsDivider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/mTodayNewsIcon"
+            android:layout_alignTop="@id/mTodayNewsIcon"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@id/mTodayNewsIcon"
+            android:background="@color/main_color_divider" />
+        <!--上下滚动的消息-->
+        <TextSwitcher
+            android:id="@+id/mTodayNewsSwitcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@id/mTodayNewsDivider" />
+        <!--右侧按键-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_home_right_arrow"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp" />
+    </RelativeLayout>
+    <!--7 * 24资讯层-->
+    <RelativeLayout
+        android:id="@+id/mQuickNewsLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mTodayNewsLay"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:padding="10dp">
+        <!--7 * 24资讯图片-->
+        <ImageView
+            android:id="@+id/mQuickNewsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_home_quick_news"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp" />
+        <!--分割线-->
+        <View
+            android:id="@+id/mQuickNewsDivider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/mQuickNewsIcon"
+            android:layout_alignTop="@id/mQuickNewsIcon"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@id/mQuickNewsIcon"
+            android:background="@color/main_color_divider" />
+        <!--上下滚动的消息-->
+        <TextView
+            android:id="@+id/mQuickNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@id/mQuickNewsDivider"
+            android:ellipsize="end"
+            android:maxEms="14"
+            android:maxLines="1" />
+        <!--右侧按键-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_home_right_arrow"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp" />
+    </RelativeLayout>
+    <!--头条界面列表-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mHeadLineList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mQuickNewsLay"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white" />
+</RelativeLayout>

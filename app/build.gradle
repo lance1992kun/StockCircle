@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.hyf.stockcircle"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    // 必要支持
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    // 沈小坤 - 通用工具
+    compile project(':lib')
+    // 各种工具类
+    compile 'com.blankj:utilcode:1.9.6'
+    // RxJava
+    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    // Retrofit通过GSON将结果转换为Bean对象
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    // 让Retrofit支持RxJava
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    // 万用ListView的Adapter
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
+    // 轮播框架
+    compile 'net.cpacm.simpleslider:library:1.0.4'
+    // 图片加载框架
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    // 悬浮菜单
+    compile 'com.github.clans:fab:1.6.4'
+    // 自动测量布局
+    compile 'com.zhy:autolayout:1.4.5'
+}

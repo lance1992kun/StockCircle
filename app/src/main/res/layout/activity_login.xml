@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/icon_login_bg">
+        <!--左上角关闭按钮-->
+        <ImageView
+            android:id="@+id/mCloseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="54px"
+            android:layout_marginTop="24px"
+            android:background="@mipmap/icon_login_close"
+            android:contentDescription="@string/app_name" />
+        <!--LOGO-->
+        <ImageView
+            android:id="@+id/mLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="135px"
+            android:background="@mipmap/icon_login_logo"
+            android:contentDescription="@string/app_name" />
+        <!--手机号编辑框-->
+        <EditText
+            android:id="@+id/mPhoneEdit"
+            android:layout_width="630px"
+            android:layout_height="130px"
+            android:layout_below="@id/mLogo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120px"
+            android:background="@drawable/shape_login_edit"
+            android:hint="@string/login_phone_hint"
+            android:inputType="phone"
+            android:labelFor="@+id/mPhoneEdit"
+            android:paddingEnd="30px"
+            android:paddingStart="35px"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/main_text_normal"
+            android:textCursorDrawable="@color/main_text_selected" />
+        <!--分割线-->
+        <View
+            android:id="@+id/mDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignEnd="@id/mPhoneEdit"
+            android:layout_alignStart="@id/mPhoneEdit"
+            android:layout_below="@id/mPhoneEdit"
+            android:background="@color/main_color_divider" />
+        <!--密码编辑框-->
+        <EditText
+            android:id="@+id/mPasswordEdit"
+            android:layout_width="630px"
+            android:layout_height="130px"
+            android:layout_below="@id/mDivider"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/shape_login_edit"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword"
+            android:labelFor="@+id/mPasswordEdit"
+            android:paddingEnd="30px"
+            android:paddingStart="35px"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/main_text_normal"
+            android:textCursorDrawable="@color/main_text_selected" />
+        <!--注册和忘记密码层-->
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/mRegisterLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mPasswordEdit"
+            android:layout_marginEnd="62px"
+            android:layout_marginStart="64px"
+            android:layout_marginTop="22px">
+            <!--注册文字-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="4px"
+                android:text="@string/login_register" />
+            <!--忘记密码文字-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:padding="4px"
+                android:text="@string/login_forget" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <!--登录，注册按钮以及法律提醒层-->
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/mLoginBtnLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mRegisterLay"
+            android:layout_marginTop="186px">
+            <!--登录按钮-->
+            <Button
+                android:id="@+id/mLoginBtn"
+                android:layout_width="630px"
+                android:layout_height="130px"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/selector_profile_btn"
+                android:text="@string/login_btn"
+                android:textColor="@android:color/white" />
+            <!--法律提示-->
+            <TextView
+                android:id="@+id/mLoginHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mLoginBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26px"
+                android:gravity="center"
+                android:text="@string/login_hint" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</ScrollView>
