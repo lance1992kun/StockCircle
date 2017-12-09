@@ -47,5 +47,6 @@ class LoginPresenterImpl implements LoginPresenter {
     @Override
     public void onNetFailed(String errorMsg) {
         mLoginView.showFailed(errorMsg);
+        mLoginView.showDialog(false);
     }
 }

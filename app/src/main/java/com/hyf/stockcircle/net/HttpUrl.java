@@ -31,4 +31,8 @@ final class HttpUrl {
      * 注册接口
      */
     static final String MEMBER_REGISTER = "/api/member/register.jhtml";
+    /**
+     * 登录接口
+     */
+    static final String MEMBER_LOGIN="/api/member/login.jhtml";
 }

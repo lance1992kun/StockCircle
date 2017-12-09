@@ -4,6 +4,7 @@ import com.hyf.stockcircle.data.entity.BaseBean;
 import com.hyf.stockcircle.data.entity.CodeBean;
 import com.hyf.stockcircle.data.entity.HeadLineBean;
 import com.hyf.stockcircle.data.entity.HeadLineLimitBean;
+import com.hyf.stockcircle.data.entity.LoginBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -13,6 +14,7 @@ import retrofit2.http.POST;
 import static com.hyf.stockcircle.net.HttpUrl.HOME_HEAD_LINE;
 import static com.hyf.stockcircle.net.HttpUrl.HOME_HEAD_LINE_LIMIT;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_GET_CODE;
+import static com.hyf.stockcircle.net.HttpUrl.MEMBER_LOGIN;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_REGISTER;
 
 /**
@@ -71,4 +73,14 @@ public interface HttpRequest {
     @FormUrlEncoded
     Observable<BaseBean> doRegister(@Field("code") String code, @Field("code_id") int code_id, @Field("mobile") String mobile,
                                     @Field("password") String password, @Field("invite") String invite);
+
+    /**
+     * 执行登录操作
+     * @param mobile 手机号
+     * @param password 密码
+     * @return 登录结果
+     */
+    @POST(MEMBER_LOGIN)
+    @FormUrlEncoded
+    Observable<LoginBean> doLogin(@Field("mobile") String mobile, @Field("password") String password);
 }
