@@ -37,8 +37,7 @@ public class MessageFragment extends BaseFragment {
 
     @Override
     public int bindLayout() {
-//        return R.layout.fragment_message;
-        return R.layout.activity_forget;
+        return R.layout.fragment_message;
     }
 
     @Override

@@ -13,6 +13,7 @@ import retrofit2.http.POST;
 
 import static com.hyf.stockcircle.net.HttpUrl.HOME_HEAD_LINE;
 import static com.hyf.stockcircle.net.HttpUrl.HOME_HEAD_LINE_LIMIT;
+import static com.hyf.stockcircle.net.HttpUrl.MEMBER_FORGET;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_GET_CODE;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_LOGIN;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_REGISTER;
@@ -76,11 +77,27 @@ public interface HttpRequest {
 
     /**
      * 执行登录操作
-     * @param mobile 手机号
+     *
+     * @param mobile   手机号
      * @param password 密码
      * @return 登录结果
      */
     @POST(MEMBER_LOGIN)
     @FormUrlEncoded
     Observable<LoginBean> doLogin(@Field("mobile") String mobile, @Field("password") String password);
+
+    /**
+     * 执行忘记密码操作
+     *
+     * @param code            验证码
+     * @param code_id         验证码id
+     * @param mobile          手机号
+     * @param password        密码
+     * @param repeat_password 重复密码
+     * @return 忘记密码操作结果
+     */
+    @POST(MEMBER_FORGET)
+    @FormUrlEncoded
+    Observable<BaseBean> doSubmit(@Field("code") String code, @Field("code_id") int code_id, @Field("mobile") String mobile,
+                                  @Field("password") String password, @Field("repeat_password") String repeat_password);
 }

@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.hyf.stockcircle.R;
 import com.hyf.stockcircle.data.entity.LoginBean;
+import com.hyf.stockcircle.ui.forget.ForgetActivity;
 import com.hyf.stockcircle.ui.register.RegisterActivity;
 import com.hyf.stockcircle.util.DialogUtil;
 import com.syk.lib.base.BaseActivity;
@@ -37,6 +38,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
      * 桥梁类
      */
     private LoginPresenterImpl mLoginPresenter = null;
+
+    @Override
+    public void onBackPressed() {
+    }
 
     @Override
     public void initData(Bundle bundle) {
@@ -96,6 +101,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 break;
             // 忘记密码
             case R.id.mForgetBtn:
+                Intent forgetIntent = new Intent(LoginActivity.this, ForgetActivity.class);
+                startActivity(forgetIntent);
+                this.finish();
                 break;
             // 法律提醒按钮
             case R.id.mLoginHint:

@@ -121,7 +121,7 @@
             android:background="@color/main_color_divider" />
         <!--确认密码编辑框-->
         <EditText
-            android:id="@+id/mInviteEdit"
+            android:id="@+id/mRepeatEdit"
             android:layout_width="630px"
             android:layout_height="130px"
             android:layout_below="@id/mDivider2"
@@ -137,10 +137,10 @@
             android:textCursorDrawable="@color/main_text_selected" />
         <!--提交按钮-->
         <Button
-            android:id="@+id/mRegisterBtn"
+            android:id="@+id/mSubmitBtn"
             android:layout_width="630px"
             android:layout_height="130px"
-            android:layout_below="@id/mInviteEdit"
+            android:layout_below="@id/mRepeatEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="182px"
             android:layout_marginTop="149px"

@@ -1,4 +1,4 @@
-package com.hyf.stockcircle.ui.register;
+package com.hyf.stockcircle.ui.forget;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -27,27 +27,15 @@ import io.reactivex.functions.Consumer;
 
 /**
  * <pre>
- *     author : syk
- *     e-mail : shenyukun1024@gmail.com
- *     time   : 2017/12/03
- *     desc   : 注册界面
- *     version: 1.0
+ *   author  : syk
+ *   e-mail  : shenyukun1024@gmail.com
+ *   time    : 2017/12/09 08:27
+ *   desc    : 忘记密码界面
+ *   version :1.0
  * </pre>
  */
 
-public class RegisterActivity extends BaseActivity implements RegisterView {
-    /**
-     * 注册界面桥梁类
-     */
-    private RegisterPresenterImpl mRegisterPresenter = null;
-    /**
-     * 验证码计时器
-     */
-    private Disposable mCodeTimer = null;
-    /**
-     * 获取验证码按钮
-     */
-    private Button mCodeBtn = null;
+public class ForgetActivity extends BaseActivity implements ForgetView {
     /**
      * 手机号编辑框
      */
@@ -61,9 +49,17 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
      */
     private EditText mPasswordEdit = null;
     /**
-     * 邀请码编辑框(可为空)
+     * 重复密码编辑框
      */
-    private EditText mInviteEdit = null;
+    private EditText mRepeatEdit = null;
+    /**
+     * 验证码计时器
+     */
+    private Disposable mCodeTimer = null;
+    /**
+     * 获取验证码按钮
+     */
+    private Button mCodeBtn = null;
     /**
      * 验证码ID保存
      */
@@ -72,6 +68,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
      * 手机号码保存字符串
      */
     private String phoneNumber = null;
+    /**
+     * 桥梁类
+     */
+    private ForgetPresenterImpl mForgetPresenter = null;
 
     @Override
     protected void onDestroy() {
@@ -87,30 +87,25 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     public void initData(Bundle bundle) {
-        mRegisterPresenter = new RegisterPresenterImpl(this);
+        mForgetPresenter = new ForgetPresenterImpl(this);
     }
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_register;
+        return R.layout.activity_forget;
     }
 
     @Override
     public void initView(Bundle savedInstanceState, View view) {
-        // 获取验证码按钮
-        mCodeBtn = F(R.id.mCodeBtn);
-        // 手机号码编辑框
         mPhoneEdit = F(R.id.mPhoneEdit);
-        // 验证码编辑框
         mCodeEdit = F(R.id.mCodeEdit);
-        // 密码编辑框
         mPasswordEdit = F(R.id.mPasswordEdit);
-        // 邀请码编辑框(可以为空)
-        mInviteEdit = F(R.id.mInviteEdit);
+        mRepeatEdit = F(R.id.mRepeatEdit);
+        mCodeBtn = F(R.id.mCodeBtn);
         // 监听事件
         setOnClick(mCodeBtn);
         setOnClick(F(R.id.mCloseBtn));
-        setOnClick(F(R.id.mRegisterBtn));
+        setOnClick(F(R.id.mCodeBtn));
     }
 
     @Override
@@ -125,25 +120,33 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         phoneNumber = mPhoneEdit.getText().toString().trim();
         String codeNumber = mCodeEdit.getText().toString().trim();
         String passwordString = mPasswordEdit.getText().toString().trim();
-        String inviteString = mInviteEdit.getText().toString().trim();
+        String repeatString = mRepeatEdit.getText().toString().trim();
         if (!RegexUtils.isMobileExact(phoneNumber)) {
-            ToastUtils.showShort("请输入正确的手机号");
+            ToastUtils.showShort("请输入正确的手机号！");
             return;
         }
         if (EmptyUtils.isEmpty(codeNumber)) {
-            ToastUtils.showShort("请输入正确的验证码");
+            ToastUtils.showShort("请输入正确的验证码！");
             return;
         }
         if (passwordString.length() < 6) {
-            ToastUtils.showShort("请输入6位以上的密码");
+            ToastUtils.showShort("请输入6位以上的密码！");
             return;
         }
-        mRegisterPresenter.doRegister(codeNumber, codeId, phoneNumber, passwordString, inviteString);
+        if (!passwordString.equals(repeatString)) {
+            ToastUtils.showShort("两次输入的密码不一样！");
+            return;
+        }
+        mForgetPresenter.doSubmit(codeNumber, codeId, phoneNumber, passwordString, repeatString);
     }
 
     @Override
     public void onWidgetClick(View view) {
         switch (view.getId()) {
+            // 关闭按钮
+            case R.id.mCloseBtn:
+                this.finish();
+                break;
             // 获取验证码按钮
             case R.id.mCodeBtn:
                 phoneNumber = mPhoneEdit.getText().toString();
@@ -151,15 +154,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                     ToastUtils.showShort("请输入正确的手机号");
                     return;
                 } else {
-                    mRegisterPresenter.getCode(phoneNumber, "", Constant.CODE_TYPE_REGISTER);
+                    mForgetPresenter.getCode(phoneNumber, "", Constant.CODE_TYPE_FORGET);
                 }
                 break;
-            // 关闭按钮
-            case R.id.mCloseBtn:
-                this.finish();
-                break;
-            // 注册按钮
-            case R.id.mRegisterBtn:
+            // 提交按钮
+            case R.id.mSubmitBtn:
                 verifyData();
                 break;
             default:
@@ -178,7 +177,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     }
 
     /**
-     * 显示联网对话框
+     * 是否显示联网对话框
      *
      * @param isShow 是否显示联网对话框
      */
@@ -192,7 +191,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     }
 
     /**
-     * 点击获取验证码之后
+     * 获取验证码
      */
     @Override
     public void onGetCode() {
@@ -235,16 +234,16 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     }
 
     /**
-     * 注册成功
+     * 修改密码成功
      *
      * @param baseBean 回调实体类
      */
     @Override
-    public void doRegisterSuccess(BaseBean baseBean) {
+    public void doSubmitSuccess(BaseBean baseBean) {
         if (baseBean.getStatus() == AppConfig.CODE_SUCCESS) {
-            ToastUtils.showShort("注册成功");
+            ToastUtils.showShort("修改密码成功");
         } else {
-            String errorMsg = "注册失败" + baseBean.getMessage();
+            String errorMsg = "修改密码失败" + baseBean.getMessage();
             ToastUtils.showShort(errorMsg);
         }
     }

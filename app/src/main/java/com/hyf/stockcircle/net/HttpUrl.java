@@ -35,4 +35,8 @@ final class HttpUrl {
      * 登录接口
      */
     static final String MEMBER_LOGIN="/api/member/login.jhtml";
+    /**
+     * 忘记密码接口
+     */
+    static final String MEMBER_FORGET="/api/member/forget.jhtml";
 }
