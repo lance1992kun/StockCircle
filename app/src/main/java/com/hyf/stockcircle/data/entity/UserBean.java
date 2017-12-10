@@ -12,7 +12,7 @@ import java.util.List;
  * </pre>
  */
 
-public class LoginBean extends BaseBean {
+public class UserBean extends BaseBean {
     /**
      * 地址
      */

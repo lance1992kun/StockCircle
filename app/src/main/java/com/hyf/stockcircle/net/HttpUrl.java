@@ -34,9 +34,33 @@ final class HttpUrl {
     /**
      * 登录接口
      */
-    static final String MEMBER_LOGIN="/api/member/login.jhtml";
+    static final String MEMBER_LOGIN = "/api/member/login.jhtml";
     /**
      * 忘记密码接口
      */
-    static final String MEMBER_FORGET="/api/member/forget.jhtml";
+    static final String MEMBER_FORGET = "/api/member/forget.jhtml";
+    /**
+     * 发布股友圈
+     */
+    static final String CIRCLE_PUBLISH = "/api/circle/publish.jhtml";
+    /**
+     * 收藏
+     */
+    static final String CIRCLE_COLLECT = "";
+    /**
+     * 点赞
+     */
+    static final String CIRCLE_LIKE = "/api/circle/like.jhtml";
+    /**
+     * 获取朋友圈列表
+     */
+    static final String CIRCLE_LIST = "/api/circle/list.jhtml";
+    /**
+     * 获取朋友圈详情
+     */
+    static final String CIRCLE_DETAIL = "/api/circle/detail.jhtml";
+    /**
+     * 评论
+     */
+    static final String CIRCLE_COMMENT="/api/circle/comment.jhtml";
 }

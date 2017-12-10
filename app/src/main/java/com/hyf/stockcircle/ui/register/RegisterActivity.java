@@ -15,7 +15,6 @@ import com.hyf.stockcircle.data.Constant;
 import com.hyf.stockcircle.data.entity.BaseBean;
 import com.hyf.stockcircle.data.entity.CodeBean;
 import com.hyf.stockcircle.util.DialogUtil;
-import com.syk.lib.AppConfig;
 import com.syk.lib.base.BaseActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -24,6 +23,8 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+
+import static com.hyf.stockcircle.data.Constant.CODE_SUCCESS;
 
 /**
  * <pre>
@@ -241,7 +242,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
      */
     @Override
     public void doRegisterSuccess(BaseBean baseBean) {
-        if (baseBean.getStatus() == AppConfig.CODE_SUCCESS) {
+        if (baseBean.getStatus() == CODE_SUCCESS) {
             ToastUtils.showShort("注册成功");
         } else {
             String errorMsg = "注册失败" + baseBean.getMessage();

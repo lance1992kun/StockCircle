@@ -12,7 +12,7 @@ import com.hyf.stockcircle.R;
 import com.hyf.stockcircle.ui.home.HomeFragment;
 import com.hyf.stockcircle.ui.fragment.MessageFragment;
 import com.hyf.stockcircle.ui.fragment.ProfileFragment;
-import com.hyf.stockcircle.ui.fragment.StockFragment;
+import com.hyf.stockcircle.ui.stock.StockFragment;
 import com.syk.lib.base.BaseActivity;
 
 /**

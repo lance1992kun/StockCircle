@@ -1,6 +1,6 @@
 package com.hyf.stockcircle.ui.login;
 
-import com.hyf.stockcircle.data.entity.LoginBean;
+import com.hyf.stockcircle.data.entity.UserBean;
 
 /**
  * <pre>
@@ -39,7 +39,7 @@ class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void doLoginSuccess(LoginBean bean) {
+    public void doLoginSuccess(UserBean bean) {
         mLoginView.showDialog(false);
         mLoginView.doLoginSuccess(bean);
     }

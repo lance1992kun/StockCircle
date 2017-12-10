@@ -9,11 +9,13 @@ import android.widget.EditText;
 import com.blankj.utilcode.util.RegexUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.hyf.stockcircle.R;
-import com.hyf.stockcircle.data.entity.LoginBean;
+import com.hyf.stockcircle.data.entity.UserBean;
 import com.hyf.stockcircle.ui.forget.ForgetActivity;
 import com.hyf.stockcircle.ui.register.RegisterActivity;
 import com.hyf.stockcircle.util.DialogUtil;
 import com.syk.lib.base.BaseActivity;
+
+import static com.hyf.stockcircle.data.Constant.CODE_SUCCESS;
 
 /**
  * <pre>
@@ -128,8 +130,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void doLoginSuccess(LoginBean bean) {
-        if (bean.getStatus() == 200) {
+    public void doLoginSuccess(UserBean bean) {
+        if (bean.getStatus() == CODE_SUCCESS) {
             ToastUtils.showShort("登录成功");
         }
     }

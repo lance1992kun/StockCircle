@@ -1,7 +1,7 @@
 package com.hyf.stockcircle.ui.login;
 
 import com.hyf.stockcircle.base.BaseView;
-import com.hyf.stockcircle.data.entity.LoginBean;
+import com.hyf.stockcircle.data.entity.UserBean;
 
 /**
  * <pre>
@@ -18,5 +18,5 @@ interface LoginView extends BaseView {
      * 登录成功
      * @param bean 登录实体类
      */
-    void doLoginSuccess(LoginBean bean);
+    void doLoginSuccess(UserBean bean);
 }

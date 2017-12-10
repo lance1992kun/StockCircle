@@ -12,6 +12,10 @@ package com.hyf.stockcircle.data;
 
 public final class Constant {
     /**
+     * 返回成功
+     */
+    public static final int CODE_SUCCESS = 200;
+    /**
      * 获取验证码类型 - 注册
      */
     public static final int CODE_TYPE_REGISTER = 1;

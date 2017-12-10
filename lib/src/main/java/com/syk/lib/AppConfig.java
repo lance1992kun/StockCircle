@@ -15,8 +15,4 @@ public class AppConfig {
      * 快速点击间隔
      */
     public static final int FAST_CLICK_PERIOD = 200;
-    /**
-     * 联网成功
-     */
-    public static final int CODE_SUCCESS = 200;
 }

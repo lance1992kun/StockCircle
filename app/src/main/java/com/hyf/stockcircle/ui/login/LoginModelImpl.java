@@ -1,6 +1,6 @@
 package com.hyf.stockcircle.ui.login;
 
-import com.hyf.stockcircle.data.entity.LoginBean;
+import com.hyf.stockcircle.data.entity.UserBean;
 import com.hyf.stockcircle.net.HttpRequest;
 import com.hyf.stockcircle.net.HttpUtil;
 
@@ -45,9 +45,9 @@ class LoginModelImpl implements LoginModel {
                 .doLogin(mobile, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<LoginBean>() {
+                .subscribe(new Consumer<UserBean>() {
                     @Override
-                    public void accept(LoginBean bean) throws Exception {
+                    public void accept(UserBean bean) throws Exception {
                         mLoginPresenter.doLoginSuccess(bean);
                     }
                 }, new Consumer<Throwable>() {
