@@ -62,5 +62,17 @@ final class HttpUrl {
     /**
      * 评论
      */
-    static final String CIRCLE_COMMENT="/api/circle/comment.jhtml";
+    static final String CIRCLE_COMMENT = "/api/circle/comment.jhtml";
+    /**
+     * 发送礼物
+     */
+    static final String GIFT_SEND = "/api/gift/send.jhtml";
+    /**
+     * 礼物列表
+     */
+    static final String GIFT_LIST = "/api/gift/list.jhtml";
+    /**
+     * 商品详情
+     */
+    static final String PRODUCT_DETAIL="/api/product/detail.jhtml";
 }

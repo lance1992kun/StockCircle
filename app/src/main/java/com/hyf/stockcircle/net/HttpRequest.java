@@ -5,9 +5,12 @@ import com.hyf.stockcircle.data.entity.CircleDetailBean;
 import com.hyf.stockcircle.data.entity.CircleListBean;
 import com.hyf.stockcircle.data.entity.CodeBean;
 import com.hyf.stockcircle.data.entity.CollectionBean;
+import com.hyf.stockcircle.data.entity.GiftListBean;
+import com.hyf.stockcircle.data.entity.GiftSendBean;
 import com.hyf.stockcircle.data.entity.HeadLineBean;
 import com.hyf.stockcircle.data.entity.HeadLineLimitBean;
 import com.hyf.stockcircle.data.entity.LikeBean;
+import com.hyf.stockcircle.data.entity.ProductDetailBean;
 import com.hyf.stockcircle.data.entity.UserBean;
 
 import io.reactivex.Observable;
@@ -18,14 +21,18 @@ import retrofit2.http.POST;
 import static com.hyf.stockcircle.net.HttpUrl.CIRCLE_COLLECT;
 import static com.hyf.stockcircle.net.HttpUrl.CIRCLE_COMMENT;
 import static com.hyf.stockcircle.net.HttpUrl.CIRCLE_DETAIL;
+import static com.hyf.stockcircle.net.HttpUrl.CIRCLE_LIKE;
 import static com.hyf.stockcircle.net.HttpUrl.CIRCLE_LIST;
 import static com.hyf.stockcircle.net.HttpUrl.CIRCLE_PUBLISH;
+import static com.hyf.stockcircle.net.HttpUrl.GIFT_LIST;
+import static com.hyf.stockcircle.net.HttpUrl.GIFT_SEND;
 import static com.hyf.stockcircle.net.HttpUrl.HOME_HEAD_LINE;
 import static com.hyf.stockcircle.net.HttpUrl.HOME_HEAD_LINE_LIMIT;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_FORGET;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_GET_CODE;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_LOGIN;
 import static com.hyf.stockcircle.net.HttpUrl.MEMBER_REGISTER;
+import static com.hyf.stockcircle.net.HttpUrl.PRODUCT_DETAIL;
 
 /**
  * <pre>
@@ -143,7 +150,7 @@ public interface HttpRequest {
      * @param token     用户唯一标识
      * @return 点赞回调对象
      */
-    @POST(CIRCLE_COLLECT)
+    @POST(CIRCLE_LIKE)
     @FormUrlEncoded
     Observable<LikeBean> doLike(@Field("circle_id") int circle_id, @Field("token") String token);
 
@@ -184,4 +191,40 @@ public interface HttpRequest {
     @FormUrlEncoded
     Observable<BaseBean> doComment(@Field("circle_id") int circle_id, @Field("content") String content,
                                    @Field("reply_comment_id") int reply_comment_id, @Field("token") String token);
+
+    /**
+     * 发送礼物
+     *
+     * @param count          数量(可以为空，默认为1)
+     * @param gift_id        礼物ID(不能为空)
+     * @param send_member_id 赠送主播用户id(不能为空)
+     * @param token          用户唯一标识(不能为空)
+     * @return 发送礼物实体类
+     */
+    @POST(GIFT_SEND)
+    @FormUrlEncoded
+    Observable<GiftSendBean> sendGift(@Field("count") int count, @Field("gift_id") int gift_id,
+                                      @Field("send_member_id") int send_member_id, @Field("token") String token);
+
+    /**
+     * 获取礼物列表
+     *
+     * @param limit 每页显示个数
+     * @param page  页码
+     * @return 礼物列表实体
+     */
+    @POST(GIFT_LIST)
+    @FormUrlEncoded
+    Observable<GiftListBean> getGiftList(@Field("limit") int limit, @Field("page") int page);
+
+    /**
+     * 获取商品详情
+     *
+     * @param product_id 商品id
+     * @param token      用户唯一标识
+     * @return 商品详情实体类
+     */
+    @POST(PRODUCT_DETAIL)
+    @FormUrlEncoded
+    Observable<ProductDetailBean> getProductDetail(@Field("product_id") int product_id, @Field("token") String token);
 }
