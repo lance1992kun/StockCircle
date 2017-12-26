@@ -46,6 +46,13 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/mBanner"
                 android:visibility="gone" />
+            <!--股趣儿层-->
+            <include
+                android:id="@+id/mStockLay"
+                layout="@layout/layout_stock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
         </RelativeLayout>
     </com.zxzd.im.widgets.MyScrollView>
     <!--底部展开菜单-->

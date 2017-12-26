@@ -85,6 +85,10 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
      */
     private RelativeLayout mLiveLay = null;
     /**
+     * 股趣儿层
+     */
+    private View mStockLay = null;
+    /**
      * 今日最新轮播
      */
     private TextSwitcher mTodayNewsSwitcher = null;
@@ -223,6 +227,8 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         mHeadLineLay = (RelativeLayout) view.findViewById(R.id.mHeadLineLay);
         // 直播层
         mLiveLay = (RelativeLayout) view.findViewById(R.id.mLiveLay);
+        // 股趣儿层
+        mStockLay = view.findViewById(R.id.mStockLay);
         // 首页底部展开菜单
         mHomeMenuBtnLay = (FloatingActionMenu) view.findViewById(R.id.mHomeMenuBtnLay);
         // 设置底部展开菜单点击外部消失
@@ -251,7 +257,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         ((MyScrollView) view.findViewById(R.id.mHeadLineScrollView)).setScrollBottomCallBack(new MyScrollView.ScrollBottomCallBack() {
             @Override
             public void onScrollBottom() {
-                if (isHasNext) {
+                if (isHasNext && (mHeadLineLay.getVisibility() == View.VISIBLE)) {
                     mHomePresenter.getHeadLineLimitData(10, currentPage);
                 }
             }
@@ -323,27 +329,35 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         switch (checkedId) {
             // 头条
             case R.id.mHomeNewsRb:
+                mHomeMenuBtnLay.setVisibility(View.VISIBLE);
                 mHeadLineLay.setVisibility(View.VISIBLE);
                 mLiveLay.setVisibility(View.GONE);
+                mStockLay.setVisibility(View.GONE);
                 // 获取头条数据
                 mHomePresenter.getHeadLineData();
                 break;
             // 直播
             case R.id.mHomeLiveRb:
+                mHomeMenuBtnLay.setVisibility(View.VISIBLE);
                 mHeadLineLay.setVisibility(View.GONE);
                 mLiveLay.setVisibility(View.VISIBLE);
+                mStockLay.setVisibility(View.GONE);
                 // 获取直播数据
                 mHomePresenter.getLive();
                 break;
             // 热门
             case R.id.mHomeHotRb:
+                mHomeMenuBtnLay.setVisibility(View.VISIBLE);
                 mHeadLineLay.setVisibility(View.GONE);
                 mLiveLay.setVisibility(View.GONE);
+                mStockLay.setVisibility(View.GONE);
                 break;
             // 股趣儿
             case R.id.mHomeFunnyRb:
+                mHomeMenuBtnLay.setVisibility(View.GONE);
                 mHeadLineLay.setVisibility(View.GONE);
                 mLiveLay.setVisibility(View.GONE);
+                mStockLay.setVisibility(View.VISIBLE);
                 break;
             default:
                 break;

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--诸葛猜盘图片-->
+    <ImageView
+        android:id="@+id/mStockImg"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@mipmap/icon_home_stock"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY" />
+    <!--降图片-->
+    <TextView
+        android:id="@+id/mStockFallImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mStockImg"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="13dp"
+        android:drawablePadding="10dp"
+        android:drawableTop="@mipmap/icon_home_stock_fall"
+        android:gravity="center"
+        android:text="@string/stock_hint_fall"
+        android:textSize="22sp" />
+    <!--涨图片-->
+    <TextView
+        android:id="@+id/mStockRiseImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/mStockImg"
+        android:layout_marginEnd="78dp"
+        android:layout_marginTop="13dp"
+        android:drawablePadding="10dp"
+        android:drawableTop="@mipmap/icon_home_stock_rise"
+        android:gravity="center"
+        android:text="@string/stock_hint_rise"
+        android:textSize="22sp" />
+    <!--底部输入层-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mStockRiseImg"
+        android:layout_margin="13dp">
+        <!--当前金币数-->
+        <TextView
+            android:id="@+id/mCurrentGold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="30sp"
+            tools:text="23850" />
+        <!--当前金币数提示文字-->
+        <TextView
+            android:id="@+id/mCurrentGoldHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mCurrentGold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/stock_current_gold_hint" />
+        <!--金币投入原则-->
+        <TextView
+            android:id="@+id/mGoldRuleHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mCurrentGoldHint"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/stock_gold_rule_hint"
+            android:textColor="@android:color/holo_red_light" />
+        <!--输入层-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mGoldRuleHint"
+            android:layout_marginTop="25dp">
+            <!--抵押文字-->
+            <TextView
+                android:id="@+id/mPledgeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="17dp"
+                android:text="@string/stock_pledge_text"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="18sp" />
+            <!--抵押金币输入框-->
+            <EditText
+                android:id="@+id/mPledgeEdit"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@id/mPledgeText"
+                android:hint="@string/stock_pledge_hint" />
+            <!--提交按钮-->
+            <Button
+                android:id="@+id/mSubmitBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/mPledgeEdit"
+                android:layout_alignTop="@id/mPledgeEdit"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="6dp"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@id/mPledgeEdit"
+                android:background="@drawable/selector_profile_btn"
+                android:text="@string/forget_btn"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
