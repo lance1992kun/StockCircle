@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/home_background">
     <!--可滑动的内容层-->
-    <com.hyf.stockcircle.widgets.MyScrollView
+    <com.zxzd.im.widgets.MyScrollView
         android:id="@+id/mHeadLineScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -47,7 +47,7 @@
                 android:layout_below="@id/mBanner"
                 android:visibility="gone" />
         </RelativeLayout>
-    </com.hyf.stockcircle.widgets.MyScrollView>
+    </com.zxzd.im.widgets.MyScrollView>
     <!--底部展开菜单-->
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/mHomeMenuBtnLay"
