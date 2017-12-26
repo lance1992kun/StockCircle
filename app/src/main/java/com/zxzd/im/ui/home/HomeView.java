@@ -3,6 +3,7 @@ package com.zxzd.im.ui.home;
 import com.zxzd.im.base.BaseView;
 import com.zxzd.im.data.entity.HeadLineBean;
 import com.zxzd.im.data.entity.HeadLineLimitBean;
+import com.zxzd.im.data.entity.LiveBean;
 
 /**
  * <pre>
@@ -28,4 +29,11 @@ interface HomeView extends BaseView {
      * @param limitBean 数据模型
      */
     void updateHeadLineLimitView(HeadLineLimitBean limitBean);
+
+    /**
+     * 联网成功更新直播界面
+     *
+     * @param liveBean 数据模型
+     */
+    void updateLiveView(LiveBean liveBean);
 }

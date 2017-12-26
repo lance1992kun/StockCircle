@@ -24,6 +24,10 @@ final class HttpUrl {
      */
     static final String HOME_HEAD_LINE_LIMIT = "/api/index/limit.jhtml";
     /**
+     * 首页直播
+     */
+    static final String HOME_LIVE = "/api/index/live.jhtml";
+    /**
      * 获取验证码接口
      */
     static final String MEMBER_GET_CODE = "/api/member/code.jhtml";
@@ -74,5 +78,5 @@ final class HttpUrl {
     /**
      * 商品详情
      */
-    static final String PRODUCT_DETAIL="/api/product/detail.jhtml";
+    static final String PRODUCT_DETAIL = "/api/product/detail.jhtml";
 }

@@ -2,6 +2,7 @@ package com.zxzd.im.ui.home;
 
 import com.zxzd.im.data.entity.HeadLineBean;
 import com.zxzd.im.data.entity.HeadLineLimitBean;
+import com.zxzd.im.data.entity.LiveBean;
 import com.zxzd.im.net.HttpRequest;
 import com.zxzd.im.net.HttpUtil;
 
@@ -67,6 +68,27 @@ class HomeModelImpl implements HomeModel {
                     public void accept(HeadLineLimitBean limitBean) throws Exception {
                         // 成功回调
                         mHeadLinePresenter.onHeadLineLimitSuccess(limitBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        // 失败回调
+                        mHeadLinePresenter.onNetFailed(throwable.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void getLive() {
+        HttpUtil.getInstance().create(HttpRequest.class)
+                .getLive()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<LiveBean>() {
+                    @Override
+                    public void accept(LiveBean liveBean) throws Exception {
+                        // 成功回调
+                        mHeadLinePresenter.onGetLiveSuccess(liveBean);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

@@ -23,4 +23,9 @@ interface HomeModel {
      * @param page  页码
      */
     void getHeadLineLimitData(int limit, int page);
+
+    /**
+     * 获取直播数据
+     */
+    void getLive();
 }

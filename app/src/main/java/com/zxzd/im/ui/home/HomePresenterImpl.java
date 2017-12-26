@@ -2,6 +2,7 @@ package com.zxzd.im.ui.home;
 
 import com.zxzd.im.data.entity.HeadLineBean;
 import com.zxzd.im.data.entity.HeadLineLimitBean;
+import com.zxzd.im.data.entity.LiveBean;
 
 /**
  * <pre>
@@ -50,6 +51,14 @@ class HomePresenterImpl implements HomePresenter {
     }
 
     @Override
+    public void getLive() {
+        // 显示联网对话框
+        mHeadLineView.showDialog(true);
+        // 进行联网操作
+        mHeadLineModel.getLive();
+    }
+
+    @Override
     public void onHeadLineSuccess(HeadLineBean resultMsg) {
         // 联网成功隐藏联网对话框
         mHeadLineView.showDialog(false);
@@ -63,6 +72,14 @@ class HomePresenterImpl implements HomePresenter {
         mHeadLineView.showDialog(false);
         // 回调联网成功更新界面
         mHeadLineView.updateHeadLineLimitView(limitBean);
+    }
+
+    @Override
+    public void onGetLiveSuccess(LiveBean liveBean) {
+        // 联网成功隐藏联网对话框
+        mHeadLineView.showDialog(false);
+        // 回调联网成功更新界面
+        mHeadLineView.updateLiveView(liveBean);
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.zxzd.im.data.entity.GiftSendBean;
 import com.zxzd.im.data.entity.HeadLineBean;
 import com.zxzd.im.data.entity.HeadLineLimitBean;
 import com.zxzd.im.data.entity.LikeBean;
+import com.zxzd.im.data.entity.LiveBean;
 import com.zxzd.im.data.entity.ProductDetailBean;
 import com.zxzd.im.data.entity.UserBean;
 
@@ -28,6 +29,7 @@ import static com.zxzd.im.net.HttpUrl.GIFT_LIST;
 import static com.zxzd.im.net.HttpUrl.GIFT_SEND;
 import static com.zxzd.im.net.HttpUrl.HOME_HEAD_LINE;
 import static com.zxzd.im.net.HttpUrl.HOME_HEAD_LINE_LIMIT;
+import static com.zxzd.im.net.HttpUrl.HOME_LIVE;
 import static com.zxzd.im.net.HttpUrl.MEMBER_FORGET;
 import static com.zxzd.im.net.HttpUrl.MEMBER_GET_CODE;
 import static com.zxzd.im.net.HttpUrl.MEMBER_LOGIN;
@@ -63,6 +65,14 @@ public interface HttpRequest {
     @POST(HOME_HEAD_LINE_LIMIT)
     @FormUrlEncoded
     Observable<HeadLineLimitBean> getIndexLimit(@Field("int") int limit, @Field("page") int page);
+
+    /**
+     * 获取直播信息
+     *
+     * @return 直播信息
+     */
+    @POST(HOME_LIVE)
+    Observable<LiveBean> getLive();
 
     /**
      * 获取验证码

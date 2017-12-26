@@ -3,6 +3,7 @@ package com.zxzd.im.ui.home;
 import com.zxzd.im.base.BasePresenter;
 import com.zxzd.im.data.entity.HeadLineBean;
 import com.zxzd.im.data.entity.HeadLineLimitBean;
+import com.zxzd.im.data.entity.LiveBean;
 
 /**
  * <pre>
@@ -29,6 +30,11 @@ interface HomePresenter extends BasePresenter {
     void getHeadLineLimitData(int limit, int page);
 
     /**
+     * 获取直播数据
+     */
+    void getLive();
+
+    /**
      * 获取头条数据成功回调
      *
      * @param resultMsg 数据对象
@@ -41,4 +47,11 @@ interface HomePresenter extends BasePresenter {
      * @param limitBean 数据对象
      */
     void onHeadLineLimitSuccess(HeadLineLimitBean limitBean);
+
+    /**
+     * 获取直播数据成功回调
+     *
+     * @param liveBean 数据对象
+     */
+    void onGetLiveSuccess(LiveBean liveBean);
 }

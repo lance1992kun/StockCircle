@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,19 +19,22 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.github.clans.fab.FloatingActionMenu;
+import com.syk.lib.base.BaseFragment;
 import com.zxzd.im.R;
+import com.zxzd.im.data.adapter.AnchorAdapter;
 import com.zxzd.im.data.adapter.HomeHeadLineAdapter;
+import com.zxzd.im.data.adapter.LiveHouseAdapter;
 import com.zxzd.im.data.entity.HeadLineBannerBean;
 import com.zxzd.im.data.entity.HeadLineBean;
 import com.zxzd.im.data.entity.HeadLineLimitBean;
 import com.zxzd.im.data.entity.HeadLineNewsBean;
 import com.zxzd.im.data.entity.HeadLineNoticeBean;
 import com.zxzd.im.data.entity.HeadLineWeekNewsBean;
+import com.zxzd.im.data.entity.LiveBean;
 import com.zxzd.im.util.DialogUtil;
 import com.zxzd.im.util.ImageUtil;
 import com.zxzd.im.widgets.FullyLinearLayoutManager;
 import com.zxzd.im.widgets.MyScrollView;
-import com.syk.lib.base.BaseFragment;
 
 import net.cpacm.library.SimpleSliderLayout;
 import net.cpacm.library.indicator.ViewpagerIndicator.UnderlinePageIndicator;
@@ -92,13 +97,33 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
      */
     private RecyclerView mHeadLineListView = null;
     /**
+     * 主播列表
+     */
+    private RecyclerView mFirstListView = null;
+    /**
+     * 直播间列表
+     */
+    private RecyclerView mSecondListView = null;
+    /**
      * 头条数据适配器
      */
     private HomeHeadLineAdapter mHomeHeadLineAdapter = null;
     /**
+     * 主播适配器
+     */
+    private AnchorAdapter mAnchorAdapter = null;
+    /**
+     * 直播间适配器
+     */
+    private LiveHouseAdapter mLiveHouseAdapter = null;
+    /**
      * 头条官方数据数据列表
      */
     private List<HeadLineNewsBean> mHomeHeadLineList = new ArrayList<>();
+    /**
+     * 直播数据
+     */
+    private List<LiveBean> mLiveBeans = new ArrayList<>();
     /**
      * 首页底部展开菜单
      */
@@ -186,6 +211,14 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         // 头条列表
         mHeadLineListView = (RecyclerView) view.findViewById(R.id.mHeadLineList);
         mHeadLineListView.setLayoutManager(new FullyLinearLayoutManager(mActivity));
+        // 主播列表
+        mFirstListView = (RecyclerView) view.findViewById(R.id.mFirstListView);
+        LinearLayoutManager horizonLayout = new LinearLayoutManager(mActivity);
+        horizonLayout.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mFirstListView.setLayoutManager(horizonLayout);
+        // 直播间列表
+        mSecondListView = (RecyclerView) view.findViewById(R.id.mSecondListView);
+        mSecondListView.setLayoutManager(new GridLayoutManager(mActivity, 2));
         // 头条层
         mHeadLineLay = (RelativeLayout) view.findViewById(R.id.mHeadLineLay);
         // 直播层
@@ -232,7 +265,7 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
      */
     @Override
     public void doBusiness(Context context) {
-        // 获取网络数据
+        // 获取头条数据
         mHomePresenter.getHeadLineData();
     }
 
@@ -292,11 +325,15 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
             case R.id.mHomeNewsRb:
                 mHeadLineLay.setVisibility(View.VISIBLE);
                 mLiveLay.setVisibility(View.GONE);
+                // 获取头条数据
+                mHomePresenter.getHeadLineData();
                 break;
             // 直播
             case R.id.mHomeLiveRb:
                 mHeadLineLay.setVisibility(View.GONE);
                 mLiveLay.setVisibility(View.VISIBLE);
+                // 获取直播数据
+                mHomePresenter.getLive();
                 break;
             // 热门
             case R.id.mHomeHotRb:
@@ -462,6 +499,16 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
         } else {
             ToastUtils.showShort("没有更多数据啦");
         }
+    }
+
+    /**
+     * 更新直播数据
+     *
+     * @param liveBean 数据模型
+     */
+    @Override
+    public void updateLiveView(LiveBean liveBean) {
+
     }
 
     /**
