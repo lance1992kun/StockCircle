@@ -1,6 +1,7 @@
 package com.zxzd.im.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -31,6 +32,7 @@ import com.zxzd.im.data.entity.HeadLineNewsBean;
 import com.zxzd.im.data.entity.HeadLineNoticeBean;
 import com.zxzd.im.data.entity.HeadLineWeekNewsBean;
 import com.zxzd.im.data.entity.LiveBean;
+import com.zxzd.im.ui.activity.WebViewActivity;
 import com.zxzd.im.util.DialogUtil;
 import com.zxzd.im.util.ImageUtil;
 import com.zxzd.im.widgets.FullyLinearLayoutManager;
@@ -440,19 +442,29 @@ public class HomeFragment extends BaseFragment implements RadioGroup.OnCheckedCh
      * @param isNotice 是否为今日最新
      */
     private void redirect(boolean isNotice) {
+        // 要传送的数据
+        Bundle bundle = new Bundle();
+        Intent mIntent = new Intent();
+        mIntent.setClass(mActivity, WebViewActivity.class);
         if (isNotice) {
             if (!mHeadLineNoticeBeans.isEmpty()) {
                 int temp = currentIndex - 1;
                 if (temp < 0) {
                     temp = 0;
                 }
-                ToastUtils.showShort(mHeadLineNoticeBeans.get(temp).getContent() + mHeadLineNoticeBeans.get(temp).getUrl());
+                bundle.putInt("type", 0);
+                bundle.putString("url", mHeadLineNoticeBeans.get(temp).getContent());
+                bundle.putString("imgUrl", mHeadLineNoticeBeans.get(temp).getUrl());
+                mIntent.putExtras(bundle);
             }
         } else {
             if (mWeekNewsBean != null) {
-                ToastUtils.showShort(mWeekNewsBean.getContent());
+                bundle.putInt("type", 0);
+                bundle.putString("url", mWeekNewsBean.getContent());
+                mIntent.putExtras(bundle);
             }
         }
+        startActivity(mIntent);
     }
 
     /**

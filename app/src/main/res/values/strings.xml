@@ -49,4 +49,11 @@
     <string name="stock_gold_rule_hint">注：起始为100，上限为10000</string>
     <string name="stock_pledge_text">抵押：</string>
     <string name="stock_pledge_hint">请输入金币</string>
+    <!--设置界面-->
+    <string name="setting_safe_hint">账号与安全</string>
+    <string name="setting_team_hint">团队介绍</string>
+    <string name="setting_contact_hint">联系我们</string>
+    <string name="setting_feedback_hint">意见反馈</string>
+    <string name="setting_share_hint">分享股友圈</string>
+    <string name="setting_logout_hint">退出登录</string>
 </resources>

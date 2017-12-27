@@ -51,4 +51,6 @@ dependencies {
     compile 'com.github.clans:fab:1.6.4'
     // 自动测量布局
     compile 'com.zhy:autolayout:1.4.5'
+    // WebView封装
+    compile 'com.just.agentweb:agentweb:3.0.0-rc'
 }
